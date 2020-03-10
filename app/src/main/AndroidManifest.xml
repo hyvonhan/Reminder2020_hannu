@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -22,6 +24,7 @@
             </intent-filter>
         </activity>
         <receiver android:name=".ReminderReceiver"/>
+        <receiver android:name=".GeofenceReciever"/>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDKZoC8PqB2Gir23IEz0mhwYB1b_SyvbnE"
