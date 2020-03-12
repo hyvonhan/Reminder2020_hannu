@@ -7,7 +7,6 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Message
 import androidx.core.app.NotificationCompat
 import androidx.room.Room
 import kotlinx.android.synthetic.main.activity_main.*
@@ -93,9 +92,9 @@ class MainActivity : AppCompatActivity() {
         val CHANNEL_ID="REMINDER_CHANNEL_ID"
         var NotificationID=1567
         fun showNotification(context: Context, message: String){
-            var notificationBuilder= NotificationCompat.Builder(context, CHANNEL_ID).setSmallIcon(R.drawable.ic_alarm_24px).setContentTitle("Reminder").setContentText(message).setStyle(NotificationCompat.BigTextStyle().bigText(message))
+            val notificationBuilder= NotificationCompat.Builder(context, CHANNEL_ID).setSmallIcon(R.drawable.ic_alarm_24px).setContentTitle("Reminder").setContentText(message).setStyle(NotificationCompat.BigTextStyle().bigText(message))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            var notificationManager=context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val notificationManager=context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
     val channel=NotificationChannel(CHANNEL_ID,context.getString(R.string.app_name),NotificationManager.IMPORTANCE_DEFAULT).apply { description=context.getString((R.string.app_name)) }
 

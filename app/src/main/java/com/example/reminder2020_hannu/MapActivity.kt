@@ -2,7 +2,6 @@ package com.example.reminder2020_hannu
 
 import android.Manifest
 import android.app.PendingIntent
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
@@ -16,7 +15,6 @@ import androidx.core.content.ContextCompat
 import androidx.room.Room
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.CameraUpdateFactory.newLatLngZoom
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
@@ -24,7 +22,6 @@ import com.google.android.gms.maps.model.CircleOptions
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_map.*
-import kotlinx.android.synthetic.main.activity_time.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.toast
 import java.lang.Exception
@@ -133,7 +130,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             fusedLocationProviderClient= LocationServices.getFusedLocationProviderClient(this)
             fusedLocationProviderClient.lastLocation.addOnSuccessListener {location:Location? ->
                 if (location!=null) {
-                    var latLong= LatLng(location.latitude, location.longitude)
+                    val latLong= LatLng(location.latitude, location.longitude)
                     with(gMap) {
                         animateCamera(CameraUpdateFactory.newLatLngZoom(latLong,13f))
                     }
@@ -142,7 +139,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 
             }
             }else {
-            var permission = mutableListOf<String>()
+            val permission = mutableListOf<String>()
             permission.add(Manifest.permission.ACCESS_FINE_LOCATION)
             permission.add(Manifest.permission.ACCESS_COARSE_LOCATION)
 
@@ -167,8 +164,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 var city=""
                 try {
                     val addressList=geocoder.getFromLocation(location.latitude, location.longitude, 1)
-                    city=addressList.get(0).locality
-                    title=addressList.get(0).getAddressLine(0)
+                    city= addressList[0].locality.toUpperCase(Locale.getDefault())
+                    title= addressList[0].getAddressLine(0)
                 } catch (e:Exception){
 
                 }
